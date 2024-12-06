@@ -9,9 +9,12 @@
 #include <string>
 #include <sstream>
 #include <vector>
+
 using namespace std;
+
 void pressEnterToContinue();
 bool readFromFile(string filename);
+
 int main()
 {
     string datafile;
@@ -40,6 +43,7 @@ bool readFromFile(string filename)
         cout << "Read error - sorry\n";
         return false;
     }
+
     //Here it reads data until done
     while (true)
     {
@@ -48,9 +52,23 @@ bool readFromFile(string filename)
         {
             break; //No more data to read
         }
-        wordCount++;
-        characters += words.length();
+
+
+        if (words != "-")
+        {
+            wordCount++;
+        }
+        
+        
+        for (int i = 0; i < words.length(); i++)
+        {
+            if ((words[i] > 64 && words[i] < 91) || (words[i] > 60 && words[i] < 123))
+            {
+                characters++;
+            }
+        }
     }
+
     //Close file and return
     inFile.close();
     cout << "Words: " << wordCount << endl;
